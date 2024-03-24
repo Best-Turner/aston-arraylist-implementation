@@ -169,7 +169,10 @@ public class MyArrayList<E> implements MyList<E> {
      */
     @Override
     public void addToIndex(int index, E el) {
-        checkIndex(index);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Не верный индекс");
+        }
+        //checkIndex(index);
         increaseArray();
         System.arraycopy(array, index, array, index + 1, size - index);
         array[index] = el;
@@ -272,7 +275,7 @@ public class MyArrayList<E> implements MyList<E> {
     }
 
     private void checkIndex(int index) {
-        if (index < 0 || index > size - 1) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Не верный индекс");
         }
     }
